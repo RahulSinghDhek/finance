@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Know Your Investment</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script>
+                function calculateFD()
+                {
+		    p = document.getElementById("fdAmount").value;
+                    t = document.getElementById("fduration").value;
+                    r = document.getElementById("finterestRate").value;
+                    c = document.getElementById("fcompounding").value;
+                    monYear = document.getElementById("monYear").value;
+                    var n=1;
+                    if(c == "Quaterly"){
+                        n=4;
+                    }
+                    if(c == "Monthly"){
+                        n=12;
+                    }
+                    if (c=="Half Yearly"){
+                        n=2;
+                    }
+                    interest = (1+ (r/(100*n)));
+
+                    if(monYear == "Years"){
+
+                        maturedAmt =  p *( Math.pow(interest,(n*t)));
+                    }
+                    if(monYear == "Months"){
+                        maturedAmt =  p*( Math.pow(interest,(n*t/12)));
+                    }
+                    if(monYear== "Days"){
+                         maturedAmt =  p*( Math.pow(interest,(n*t/365)));
+                    }
+                        document.getElementById("fmaturityAmount").value= Math.round(maturedAmt);
+                }
+
+                function calculateRD()
+                {
+
+                    p = document.getElementById("installment").value;
+                    t = document.getElementById("duration").value;
+                    r = document.getElementById("interestRate").value;
+                    c = document.getElementById("compounding").value;
+                    var n=1;
+                    if(c == "Quaterly"){
+                        n=4;
+                    }
+                    if(c == "Monthly"){
+                        n=12;
+                    }
+                    if (c=="Half Yearly"){
+                        n=2;
+                    }
+                    maturedAmt = 0;
+                    while(t>0){
+                        interest = (1+ (r/(100*n)));
+                        maturedAmt = maturedAmt+( p*( Math.pow(interest,(n*t/12))));
+                        t=t-1;
+                    }
+                    document.getElementById("maturityAmount").value= Math.round(maturedAmt);
+                }
+
+                function calculateInstallmentAmount()
+                {
+
+                    a = document.getElementById("imaturityAmount").value;
+                    t = document.getElementById("iduration").value;
+                    r = document.getElementById("iinterestRate").value;
+                    c = document.getElementById("icompounding").value;
+                    var n=1;
+                    if(c == "Quaterly"){
+                        n=4;
+                    }
+                    if(c == "Monthly"){
+                        n=12;
+                    }
+                    if (c=="Half Yearly"){
+                        n=2;
+                    }
+                    temp=0
+                    x=t;
+                    while(t>0){
+                        interest = (1+ (r/(100*n)));
+                        temp = temp + ( Math.pow(interest,(n*t/12)));
+                        t=t-1;
+                    }
+
+                    p = a/temp ;
+                    document.getElementById("iinstallment").value= Math.round(p);
+                }
+                function calculateSIP()
+                {
+
+                    p = document.getElementById("sipAmount").value;
+                    t = document.getElementById("sipduration").value;
+                    r = document.getElementById("sipinterestRate").value;
+                    maturedAmt = 0;
+                    n=12
+                    t=t*12
+                    while(t>0){
+                        interest = (1+ (r/(100*n)));
+                        maturedAmt = maturedAmt+( p*( Math.pow(interest,(n*t/12))));
+                        t=t-1;
+                    }
+
+                    document.getElementById("sipmaturityAmount").value= Math.round(maturedAmt);
+                }
+              </script>
+</head>
+<body>
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#page-top">Know Your Investment</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">About</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                
+            </div>
+        </div>
+    </header>
+
+<div class="container">
+  <h2>Know your Investment value</h2>
+  
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+    <li><a data-toggle="tab" href="#rd">RD</a></li>
+    <li><a data-toggle="tab" href="#fd">FD</a></li>
+    <li><a data-toggle="tab" href="#sip">SIP</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>HOME</h3>
+      <p>Know the power of compounding. Are you really aware? <p>Before investing in any of the funds, find where would they take you after years </p></p>
+    </div>
+    <div id="rd" class="tab-pane fade">
+      
+      	<div class="row">
+                <div class="col-sm-6">
+                        <h2 align="center">Calculate Maturity</h2>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="installment">Installment</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="installment" placeholder="Monthly deposit in Rupees">
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="duration">Duration</label>
+                                    <div class="col-sm-5">
+                                        <input type="number" class="form-control" id="duration" placeholder="Duration in Months">
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="interestRate">Interest Rate</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="interestRate" placeholder="e.g. 7.5">
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="compounding">Coumpounding</label>
+                                    <div class="col-sm-5">
+                                    	<select class="form-control" id="compounding">
+                                        	<option>Monthly</option>
+                                        	<option>Quaterly</option>
+                                        	<option>Half Yearly</option>
+                                        	<option>Annually</option>
+                                    	</select>
+                             		</div>
+                             </div>
+
+                            <div class="form-group">
+                                <button class="btn btn-default col-sm-4" onclick="calculateRD(); return false;">Maturity Amount</button>
+                                <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="maturityAmount" >
+                                </div>
+                            </div>
+                        </form>
+                </div>
+                <div class="col-sm-6">
+                        <h2 align="center">Calculate Installment</h2>
+                        <form class="form-horizontal" >
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="imaturityAmount">Maturity</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="imaturityAmount" placeholder="Monthly deposit in Rupees">
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="iduration">Duration</label>
+                                    <div class="col-sm-5">
+                                        <input type="number" class="form-control" id="iduration" placeholder="Duration in Months">
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="iinterestRate">Interest Rate</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="iinterestRate" placeholder="e.g. 7.5">
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="icompounding">Coumpounding</label>
+                                    <div class="col-sm-5">
+                                    	<select class="form-control" id="icompounding">
+                                        	<option>Monthly</option>
+                                        	<option>Quaterly</option>
+                                        	<option>Half Yearly</option>
+                                        	<option>Annually</option>
+                                    	</select>
+                             		</div>
+                             </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default col-sm-4" onclick="calculateInstallmentAmount(); return false;">Installment</button>
+                                <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="iinstallment" placeholder="">
+                                </div>
+                            </div>
+                        </form>
+                </div>
+
+        </div>
+      
+    </div>
+    <div id="fd" class="tab-pane fade">
+
+        <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                        <h2 align="center">Fixed Deposit Calculator</h2>
+                        <form class="form-horizontal" >
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="fdAmount">FD Amount</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="fdAmount" placeholder="deposit in Rupees">
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="fduration">Duration</label>
+                                    <div class="col-sm-4">
+                                        <input type="number" class="form-control" id="fduration" placeholder="Duration">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" id="monYear">
+                                            <option>Years</option>
+                                            <option>Months</option>
+                                            <option>Days</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="finterestRate">Interest Rate</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="finterestRate" placeholder="e.g. 7.5">
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="fcompounding">Coumpounding</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" id="fcompounding">
+                                                <option>Monthly</option>
+                                                <option>Quaterly</option>
+                                                <option>Half Yearly</option>
+                                                <option>Annually</option>
+                                        </select>
+                                        </div>
+                             </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default col-sm-4" onclick="calculateFD(); return false;">Maturity Amount</button>
+                                <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="fmaturityAmount" placeholder="">
+                                </div>
+                            </div>
+                        </form>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+
+    </div>
+    <div id="sip" class="tab-pane fade">
+        <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                        <h2 align="center">SIP Calculator</h2>
+                        <form class="form-horizontal" >
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="sipAmount">Monthly Installment</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="sipAmount" placeholder="deposit in Rupees">
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="sipduration">Duration</label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" id="sipduration" placeholder="Duration In Years">
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="control-label col-sm-4" for="sipinterestRate">Expected Rate Of Return</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="sipinterestRate" placeholder="e.g. 12.5">
+                                    </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default col-sm-4" onclick="calculateSIP(); return false;">Maturity Amount</button>
+                                <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="sipmaturityAmount" placeholder="">
+                                </div>
+                            </div>
+                        </form>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
